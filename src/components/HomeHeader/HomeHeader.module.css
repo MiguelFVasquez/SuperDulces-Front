@@ -1,0 +1,39 @@
+/* Color principal: #ff7a2d (naranja) */
+:root {
+  --color-primary: #ff7a2d;
+  --color-text-on-primary: #ffffff;
+}
+
+/* Contenedor de la cabecera */
+.header {
+  width: 100%;
+  /* Puedes fijar altura o dejar auto según contenido */
+  padding: 1rem 2rem;
+  background-color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centra el contenido horizontalmente */
+  /* Si quisieras logo a la izquierda y texto a la derecha, usarías justify-content: space-between y otro contenedor para logo */
+}
+
+/* Título */
+.title {
+  margin: 0;
+  color: var(--color-text-on-primary);
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Responsividad: en pantallas más grandes, agrandar la fuente */
+@media (min-width: 600px) {
+  .title {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .title {
+    font-size: 2.5rem;
+  }
+}

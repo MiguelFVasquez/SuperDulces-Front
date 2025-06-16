@@ -1,0 +1,21 @@
+/* src/pages/LoginPage.module.css */
+
+/* Contenedor principal: columna que ocupa toda la altura */
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Fondo: puedes usar el mismo gradient que tenías en .container */
+  background: linear-gradient(135deg, #f9f9f9 0%, #e8e8e8 100%);
+}
+
+/* Área principal (below header) que centrará el login */
+.mainContent {
+  flex: 1; /* ocupa el espacio restante */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* Si deseas, podrías ajustar media queries aquí. */
