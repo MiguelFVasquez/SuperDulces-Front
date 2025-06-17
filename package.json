@@ -2,6 +2,7 @@
   "name": "superdulces-front",
   "private": true,
   "version": "0.0.0",
+  "proxy": "http://localhost:8086",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -27,4 +28,5 @@
     "typescript-eslint": "^8.30.1",
     "vite": "^6.3.5"
   }
+  
 }

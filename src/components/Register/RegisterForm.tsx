@@ -1,37 +1,74 @@
-// src/components/Register/RegisterForm.tsx
 import React, { useState } from 'react'
 import styles from './RegisterForm.module.css'
+import type { CreateAccountDTO } from '../../types/account/CreateAccount'
 import { useNavigate } from 'react-router-dom'
 
 interface RegisterFormProps {
-  onRegister: (data: { username: string; email: string; phone:number; password: string; confirmPassword: string }) => void
+  onRegister: (data: CreateAccountDTO) => Promise<void>
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
-  const [username, setUsername] = useState('')
+  const [idUser, setIdUser] = useState('')
+  const [name, setName] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState(0)
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
+
     // Validaciones básicas:
+    if (!idUser.trim() || !name.trim() || !phoneNumber.trim() || !email.trim() || !password) {
+      setError('All fields are required')
+      return
+    }
+    // Confirmar contraseña
     if (password !== confirmPassword) {
       setError('Passwords do not match')
       return
     }
+    // Longitud mínima de contraseña (opcional; según tu política)
     if (password.length < 6) {
       setError('Password must be at least 6 characters')
       return
     }
-    // Aquí podrías hacer más validaciones (regex email, username, etc.)
-    // Llamas al callback onRegister para que la página maneje la lógica (API, localStorage, etc.)
-    onRegister({ username, email, phone,password, confirmPassword })
+    // Validación básica de email (regex simple). Opcional, puedes usar librería de validación.
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      setError('Invalid email address')
+      return
+    }
+    // Validación básica de phoneNumber: por ejemplo, dígitos y longitud mínima
+    const phoneDigits = phoneNumber.replace(/\D/g, '')
+    if (phoneDigits.length < 7) {
+      setError('Invalid phone number')
+      return
+    }
+
+    // Si pasa validaciones, construir DTO sin confirmPassword
+    const dto: CreateAccountDTO = {
+      idUser: idUser.trim(),
+      name: name.trim(),
+      phoneNumber: phoneNumber.trim(),
+      email: email.trim(),
+      password,
+    }
+
+    setLoading(true)
+    onRegister(dto)
+      // Si onRegister devuelve una promesa, podemos manejar finally:
+      .catch((err) => {
+        // Si onRegister arroja error, muéstralo
+        console.error('Registration error:', err)
+        setError(typeof err === 'string' ? err : 'Registration failed')
+      })
+      .finally(() => setLoading(false))
   }
 
   return (
@@ -41,8 +78,24 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
       <input
         type="text"
         placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        value={idUser}
+        onChange={(e) => setIdUser(e.target.value)}
+        required
+        className={styles.inputField}
+      />
+      <input
+        type="text"
+        placeholder="Full Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+        className={styles.inputField}
+      />
+      <input
+        type="text"
+        placeholder="Phone Number"
+        value={phoneNumber}
+        onChange={(e) => setPhoneNumber(e.target.value)}
         required
         className={styles.inputField}
       />
@@ -51,14 +104,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        required
-        className={styles.inputField}
-      />
-      <input
-        type="phone"
-        placeholder="Phone number"
-        value={email}
-        onChange={(e) => setPhone(+e.target.value)}
         required
         className={styles.inputField}
       />
@@ -78,8 +123,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
         required
         className={styles.inputField}
       />
-      <button type="submit" className={styles.registerBtn}>
-        Create Account
+      <button
+        type="submit"
+        className={styles.registerBtn}
+        disabled={loading}
+      >
+        {loading ? 'Creating...' : 'Create Account'}
       </button>
       <p className={styles.loginPrompt}>
         Already have an account?{' '}
