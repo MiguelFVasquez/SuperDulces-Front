@@ -1,8 +1,11 @@
-import HomeHeader from '../components/HomeHeader/HomeHeader'
-import LoginForm from '../components/Login/LoginForm'
+import HomeHeader from '../../components/HomeHeader/HomeHeader'
+import LoginForm from '../../components/Login/LoginForm'
 import styles from './LoginPage.module.css'  
+import { useNavigate } from 'react-router-dom'
+
 
 const LoginPage = () => {
+  const navigate = useNavigate()
   const handleLogin = (username: string, password: string) => {
     // Replace with real logic
     if (username === 'admin' && password==='admin1234') {
@@ -15,9 +18,9 @@ const LoginPage = () => {
   }
 
   const handleRegister = () => {
-    alert('Redirect to registration page')
-    // navigate to /register or open modal
+    navigate('/register')
   }
+
 
   return (
     <div className={styles.pageContainer}>

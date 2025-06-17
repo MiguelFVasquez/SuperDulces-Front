@@ -1,0 +1,87 @@
+/* src/components/Register/RegisterForm.module.css */
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  gap: 1.2rem;
+}
+
+.title {
+  text-align: center;
+  color: #333;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 0;
+}
+
+.inputField {
+  padding: 12px 15px;
+  border: 1px solid #e1e1e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.inputField:focus {
+  border-color: #ff7a2d;
+  box-shadow: 0 0 0 3px rgba(255, 122, 45, 0.15);
+  outline: none;
+}
+
+.registerBtn {
+  padding: 12px;
+  background-color: #ff7a2d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.registerBtn:hover {
+  background-color: #e66624;
+}
+
+.registerBtn:active {
+  transform: scale(0.98);
+}
+
+.loginPrompt {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0;
+}
+
+.loginLink {
+  color: #ff7a2d;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.loginLink:hover {
+  color: #e66624;
+}
+
+/* Responsive ajustes */
+@media (max-width: 480px) {
+  .form {
+    padding: 1.8rem;
+  }
+  .loginPrompt {
+    font-size: 0.9rem;
+  }
+}
