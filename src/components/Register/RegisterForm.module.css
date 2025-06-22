@@ -1,9 +1,13 @@
-/* src/components/Register/RegisterForm.module.css */
+.inputGroup {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 .form {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 400px;
+  max-width: 700px; /* was 400px */
   padding: 2.5rem;
   border-radius: 12px;
   background: white;
@@ -11,36 +15,7 @@
   gap: 1.2rem;
 }
 
-.title {
-  text-align: center;
-  color: #333;
-  margin: 0 0 0.5rem;
-  font-weight: 600;
-}
-
-.error {
-  color: red;
-  font-size: 0.9rem;
-  text-align: center;
-  margin: 0;
-}
-
-.inputField {
-  padding: 12px 15px;
-  border: 1px solid #e1e1e1;
-  border-radius: 6px;
-  font-size: 1rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.inputField:focus {
-  border-color: #ff7a2d;
-  box-shadow: 0 0 0 3px rgba(255, 122, 45, 0.15);
-  outline: none;
-}
-
-.registerBtn {
-  padding: 12px;
+.registerBtn{
   background-color: #ff7a2d;
   color: white;
   border: none;
@@ -58,7 +33,7 @@
 .registerBtn:active {
   transform: scale(0.98);
 }
-
+  
 .loginPrompt {
   text-align: center;
   font-size: 0.95rem;
@@ -75,13 +50,27 @@
 .loginLink:hover {
   color: #e66624;
 }
+.inputField {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 15px;
+  border: 1px solid #e1e1e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
 
-/* Responsive ajustes */
-@media (max-width: 480px) {
-  .form {
-    padding: 1.8rem;
-  }
-  .loginPrompt {
-    font-size: 0.9rem;
+.inputField:focus {
+  border-color: #ff7a2d;
+  box-shadow: 0 0 0 3px rgba(255, 122, 45, 0.15);
+  outline: none;
+}
+
+/* Keep your existing styles for .form, .title, .error, etc. */
+
+/* Optional: Responsive tweak for small screens */
+@media (max-width: 600px) {
+  .inputGroup {
+    flex-direction: column;
   }
 }

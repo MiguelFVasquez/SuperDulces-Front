@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styles from './LoginForm.module.css'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
   onLogin: (username: string, password: string) => void
@@ -9,6 +10,7 @@ interface Props {
 const LoginForm: React.FC<Props> = ({ onLogin, onRegister }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -39,15 +41,20 @@ const LoginForm: React.FC<Props> = ({ onLogin, onRegister }) => {
         <button type="submit" className={styles.loginBtn}>Login</button>
     
         <div className={styles.registerContainer}>
-        <p className={styles.registerPrompt}>Don't have an account? Register:</p>
-        <button 
-            type="button" 
-            onClick={onRegister} 
-            className={styles.registerBtn}
-            aria-label="Register new account"
-        >
+          
+        <p className={styles.registerPrompt}>Don't have an account? {' '}
+          <span 
+            className={styles.registerLink}
+            onClick={() => navigate('/register')}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') navigate ('/register')
+            }}
+          >
             Register
-        </button>
+          </span>
+        </p>
         </div>
     </form>
     </div>

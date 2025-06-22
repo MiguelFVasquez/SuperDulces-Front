@@ -72,9 +72,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <h2 className={styles.title}>Register Super Dulces</h2>
-      {error && <p className={styles.error}>{error}</p>}
+  <form className={styles.form} onSubmit={handleSubmit}>
+    <h2 className={styles.title}>Register Super Dulces</h2>
+    {error && <p className={styles.error}>{error}</p>}
+
+    <div className={styles.inputGroup}>
       <input
         type="text"
         placeholder="Username"
@@ -91,6 +93,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
         required
         className={styles.inputField}
       />
+    </div>
+
+    <div className={styles.inputGroup}>
       <input
         type="text"
         placeholder="Phone Number"
@@ -107,6 +112,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
         required
         className={styles.inputField}
       />
+    </div>
+
+    <div className={styles.inputGroup}>
       <input
         type="password"
         placeholder="Password"
@@ -123,28 +131,31 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
         required
         className={styles.inputField}
       />
-      <button
-        type="submit"
-        className={styles.registerBtn}
-        disabled={loading}
+    </div>
+
+    <button
+      type="submit"
+      className={styles.registerBtn}
+      disabled={loading}
+    >
+      {loading ? 'Creating...' : 'Create Account'}
+    </button>
+
+    <p className={styles.loginPrompt}>
+      Already have an account?{' '}
+      <span
+        className={styles.loginLink}
+        onClick={() => navigate('/')}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') navigate('/')
+        }}
       >
-        {loading ? 'Creating...' : 'Create Account'}
-      </button>
-      <p className={styles.loginPrompt}>
-        Already have an account?{' '}
-        <span
-          className={styles.loginLink}
-          onClick={() => navigate('/')}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') navigate('/')
-          }}
-        >
-          Log In
-        </span>
-      </p>
-    </form>
+        Log In
+      </span>
+    </p>
+  </form>
   )
 }
 

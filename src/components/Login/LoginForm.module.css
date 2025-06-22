@@ -2,7 +2,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 220%;
   max-width: 400px;
   padding: 2.5rem;
   border-radius: 12px;
@@ -63,25 +63,22 @@ h2{
   gap: 0.5rem;
   margin-top: 0.5rem;
 }
+
+
 .registerPrompt {
-  margin: 0;
-  color: #666;
-  font-size: 0.95rem;
   text-align: center;
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0;
 }
-.registerBtn {
-  padding: 8px 16px;
-  background-color: transparent;
-  color: #ff8640;
-  border: 1px solid #ff7a2d;
-  border-radius: 6px;
-  font-weight: 500;
+.registerLink {
+  color: #ff7a2d;
   cursor: pointer;
-  transition: all 0.3s;
+  text-decoration: underline;
 }
-.registerBtn:hover {
-  background-color: #ff7a2d;
-  color: white;
+
+.registerLink:hover {
+  color: #e66624;
 }
 
 /* Responsive ajustes */
