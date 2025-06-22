@@ -1,0 +1,5 @@
+.board {
+  padding: 2rem;
+  background-color: #f7f7f7;
+  min-height: calc(100vh - 80px); /* adjust for header */
+}

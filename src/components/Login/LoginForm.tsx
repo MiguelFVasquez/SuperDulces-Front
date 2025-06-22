@@ -7,7 +7,7 @@ interface Props {
   onRegister: () => void
 }
 
-const LoginForm: React.FC<Props> = ({ onLogin, onRegister }) => {
+const LoginForm: React.FC<Props> = ({ onLogin }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
@@ -41,7 +41,7 @@ const LoginForm: React.FC<Props> = ({ onLogin, onRegister }) => {
         <button type="submit" className={styles.loginBtn}>Login</button>
     
         <div className={styles.registerContainer}>
-          
+
         <p className={styles.registerPrompt}>Don't have an account? {' '}
           <span 
             className={styles.registerLink}
