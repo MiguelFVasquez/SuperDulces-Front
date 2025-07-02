@@ -1,0 +1,16 @@
+
+.backdrop {
+  position: fixed; top: 0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.5); display:flex;
+  justify-content:center; align-items:center;
+}
+.modal {
+  background: white; padding: 1.5rem; border-radius:8px;
+  position: relative; max-width:500px; width:100%;
+}
+.closeBtn {
+  position:absolute; top:0.5rem; right:0.5rem; background:none; border:none; cursor:pointer;
+}
+.form { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
+.form input, .form select, .form button { padding:0.5rem; border:1px solid #ccc; border-radius:4px; }
+.form button { grid-column: span 2; background:#ff7a2d; color:white; border:none; cursor:pointer; }

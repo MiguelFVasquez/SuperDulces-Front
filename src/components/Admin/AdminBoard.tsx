@@ -1,5 +1,11 @@
+// src/components/AdminBoard/AdminBoard.tsx
 import React from 'react'
 import styles from './AdminBoard.module.css'
+
+// Import the page components
+import WorkerPage from '../../pages/admin/WorkerPage'
+// (Later, you can create ProductPage and SupplierPage similarly)
+
 
 interface Props {
   section: 'products' | 'workers' | 'suppliers'
@@ -9,11 +15,11 @@ const AdminBoard: React.FC<Props> = ({ section }) => {
   const renderSection = () => {
     switch (section) {
       case 'products':
-        return <div>📦 Manage Products</div>
+        //return <ProductPage />
       case 'workers':
-        return <div>👷 Manage Workers</div>
+        return <WorkerPage />
       case 'suppliers':
-        return <div>🚚 Manage Suppliers</div>
+        //return <SupplierPage />
       default:
         return null
     }
