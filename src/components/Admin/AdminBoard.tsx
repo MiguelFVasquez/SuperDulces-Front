@@ -4,6 +4,7 @@ import styles from './AdminBoard.module.css'
 
 // Import the page components
 import WorkerPage from '../../pages/admin/WorkerPage'
+import SupplierPage from '../../pages/admin/SupplierPage'
 // (Later, you can create ProductPage and SupplierPage similarly)
 
 
@@ -19,7 +20,7 @@ const AdminBoard: React.FC<Props> = ({ section }) => {
       case 'workers':
         return <WorkerPage />
       case 'suppliers':
-        //return <SupplierPage />
+        return <SupplierPage />
       default:
         return null
     }
